@@ -1,59 +1,46 @@
-// App — корневой компонент приложения.
-//
-// ЗАДАНИЕ
-// --------
-// Перенесите свою страницу выбора даты и времени из нативного JS
-// на React. У вас уже есть:
-//   - готовая вёрстка (HTML);
-//   - готовые стили (CSS);
-//   - рабочий код на нативном JS (валидация дат, рендер календаря,
-//     обработчики кликов, выбор слота).
-//
-// Теперь нужно то же самое сделать в React.
-//
-// ЧТО НУЖНО СДЕЛАТЬ
-// ------------------
-// 1. Разбить страницу на компоненты. Как именно — решайте сами.
-//    Обычно выделяют: шапку, подвал, календарь, сетку слотов,
-//    нижнюю панель.
-//
-// 2. Перенести вёрстку из HTML в JSX. Стили оставить как есть,
-//    просто положить их в тот же проект (например, в src/styles/
-//    или рядом с компонентами).
-//
-// 3. Заменить нативное состояние (переменные + прямые манипуляции
-//    с DOM) на useState. Какие именно данные должны жить в состоянии —
-//    подумайте сами. Скорее всего: текущий месяц, выбранный день,
-//    выбранное время, массив слотов.
-//
-// 4. Рендер календаря и слотов делать через JSX и .map(),
-//    без innerHTML и querySelector.
-//
-// 5. Обработчики кликов — через onClick прямо в JSX,
-//    без addEventListener.
-//
-// 6. Функции для работы с датами, которые вы уже написали
-//    на нативном JS (построение сетки календаря, сравнение дат,
-//    проверка «не раньше сегодня»), можно переиспользовать.
-//    Они чистые — не зависят от React. Создайте файл
-//    src/utils/date.js и перенесите их туда.
-//
-//
-// ПОДСКАЗКА
-// ---------
-// Если что-то не работает или непонятно, как перевести нативный
-// код на React — вернитесь к лекции. Там разбирались все
-// основные приёмы: состояние, пропсы, рендер списков, колбэки.
-//
-// Ниже — пустой каркас. Здесь можно начать писать.
+import { useState } from 'react';
+import Header from './components/Header.jsx';
+import Masters from './components/Masters.jsx';
+import Calendar from './components/Calendar.jsx';
+import Slots from './components/Slots.jsx';
+import { masters } from './data.js';
 
-function App() {
+export default function App() {
+  const [selectedMasterId, setSelectedMasterId] = useState(1);
+  const [selectedDate, setSelectedDate] = useState({ year: 2026, month: 10, day: 13 });
+  const [selectedTime, setSelectedTime] = useState('19:00');
+
+  const handleSubmit = () => {
+    const master = masters.find((m) => m.id === selectedMasterId);
+    const date = `${String(selectedDate.day).padStart(2, '0')}.${String(
+      selectedDate.month + 1
+    ).padStart(2, '0')}.${selectedDate.year}`;
+    alert(`Вы записаны!\n\nМастер: ${master.name}\nДата: ${date}\nВремя: ${selectedTime}`);
+  };
+
   return (
-    <div>
-      {/* Начните отсюда. Например, разметьте .page, добавьте шапку,
-            основную область, подвал. */}
-    </div>
+    <>
+      <Header />
+      <main className="main">
+        <h1 className="title">Запись к мастеру</h1>
+
+        <Masters
+          masters={masters}
+          selectedId={selectedMasterId}
+          onSelect={setSelectedMasterId}
+        />
+
+        <Calendar selectedDate={selectedDate} onChange={setSelectedDate} />
+
+        <Slots selectedTime={selectedTime} onSelect={setSelectedTime} />
+
+        <button className="submit-btn" type="button" onClick={handleSubmit}>
+          Записаться
+        </button>
+      </main>
+      <footer className="footer">
+        <p className="footer__text">© 2026 Барбершоп «Бритва». Все права защищены.</p>
+      </footer>
+    </>
   );
 }
-
-export default App;

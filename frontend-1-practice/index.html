@@ -1,26 +1,121 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Выбор даты и времени</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <!--
-      ЗАДАНИЕ
-      ========
-      Сверстать страницу выбора даты и времени по своему макету.
-
-      Пока это только вёрстка. Никакого JavaScript — ни кликов,
-      ни переходов, ни выбора дня. Всё статично.
-
-      Стили пишите в styles.css. Разметку — здесь.
-    -->
-
-    <div class="page">
-      <!-- Начните отсюда. Разметьте шапку, основную область
-           с календарём и слотами, подвал. -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Барбершоп «Бритва» — запись</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <div class="logo">
+        <span class="logo__icon">💈</span>
+        <span class="logo__text">Бритва</span>
+      </div>
+      <nav class="nav">
+        <a href="#" class="nav__link">Услуги</a>
+        <a href="#" class="nav__link">Мастера</a>
+        <a href="#" class="nav__link nav__link--active">Запись</a>
+      </nav>
     </div>
-  </body>
+  </header>
+
+  <main class="main">
+    <h1 class="title">Запись к мастеру</h1>
+
+    <section class="masters">
+      <h2 class="section-title">Выберите мастера</h2>
+      <div class="masters__list">
+        <article class="master-card master-card--active">
+          <div class="master-card__avatar">👨‍🦱</div>
+          <div class="master-card__info">
+            <h3 class="master-card__name">Артём</h3>
+            <p class="master-card__spec">Классические стрижки</p>
+          </div>
+        </article>
+        <article class="master-card">
+          <div class="master-card__avatar">🧔</div>
+          <div class="master-card__info">
+            <h3 class="master-card__name">Игорь</h3>
+            <p class="master-card__spec">Борода и бритьё</p>
+          </div>
+        </article>
+        <article class="master-card">
+          <div class="master-card__avatar">👩</div>
+          <div class="master-card__info">
+            <h3 class="master-card__name">Мария</h3>
+            <p class="master-card__spec">Стрижки и укладка</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="calendar">
+      <h2 class="section-title">Выберите дату</h2>
+      <div class="calendar__header">
+        <button class="calendar__arrow" type="button" aria-label="Предыдущий месяц">‹</button>
+        <span class="calendar__month">Ноябрь 2026</span>
+        <button class="calendar__arrow" type="button" aria-label="Следующий месяц">›</button>
+      </div>
+      <div class="calendar__weekdays">
+        <span class="calendar__weekday">Пн</span>
+        <span class="calendar__weekday">Вт</span>
+        <span class="calendar__weekday">Ср</span>
+        <span class="calendar__weekday">Чт</span>
+        <span class="calendar__weekday">Пт</span>
+        <span class="calendar__weekday">Сб</span>
+        <span class="calendar__weekday">Вс</span>
+      </div>
+      <div class="calendar__grid">
+        <!-- пустые ячейки для сдвига первого дня -->
+        <span class="calendar__day calendar__day--empty"></span>
+        <span class="calendar__day calendar__day--empty"></span>
+        <span class="calendar__day calendar__day--empty"></span>
+        <span class="calendar__day calendar__day--empty"></span>
+        <span class="calendar__day calendar__day--empty"></span>
+        <!-- дни -->
+        <span class="calendar__day">1</span>
+        <span class="calendar__day">2</span>
+        <span class="calendar__day">3</span>
+        <span class="calendar__day calendar__day--disabled">4</span>
+        <span class="calendar__day">5</span>
+        <span class="calendar__day">6</span>
+        <span class="calendar__day">7</span>
+        <span class="calendar__day">8</span>
+        <span class="calendar__day">9</span>
+        <span class="calendar__day">10</span>
+        <span class="calendar__day">11</span>
+        <span class="calendar__day">12</span>
+        <span class="calendar__day calendar__day--active">13</span>
+        <span class="calendar__day">14</span>
+        <span class="calendar__day">15</span>
+        <span class="calendar__day">16</span>
+        <span class="calendar__day">17</span>
+        <span class="calendar__day">18</span>
+        <span class="calendar__day">19</span>
+        <span class="calendar__day">20</span>
+      </div>
+    </section>
+
+    <section class="slots">
+      <h2 class="section-title">Выберите время</h2>
+      <div class="slots__list">
+        <button class="slot" type="button">10:00</button>
+        <button class="slot" type="button">11:30</button>
+        <button class="slot slot--busy" type="button" disabled>13:00</button>
+        <button class="slot" type="button">14:30</button>
+        <button class="slot slot--busy" type="button" disabled>16:00</button>
+        <button class="slot" type="button">17:30</button>
+        <button class="slot slot--active" type="button">19:00</button>
+      </div>
+    </section>
+
+    <button class="submit-btn" type="button">Записаться</button>
+  </main>
+
+  <footer class="footer">
+    <p class="footer__text">© 2026 Барбершоп «Бритва». Все права защищены.</p>
+  </footer>
+</body>
 </html>

@@ -37,15 +37,16 @@ export default function Calendar({ selectedDate, onChange }) {
           d === null ? (
             <span key={`empty-${i}`} className="calendar__day calendar__day--empty" />
           ) : (
-            <span
+            <button
               key={d}
+              type="button"
               className={
                 'calendar__day' + (d === day ? ' calendar__day--active' : '')
               }
               onClick={() => onChange({ year, month, day: d })}
             >
               {d}
-            </span>
+            </button>
           )
         )}
       </div>

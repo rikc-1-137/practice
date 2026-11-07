@@ -12,6 +12,10 @@ export default function App() {
 
   const handleSubmit = () => {
     const master = masters.find((m) => m.id === selectedMasterId);
+    if (!master || !selectedTime) {
+      alert('Выберите мастера и время');
+      return;
+    }
     const date = `${String(selectedDate.day).padStart(2, '0')}.${String(
       selectedDate.month + 1
     ).padStart(2, '0')}.${selectedDate.year}`;
